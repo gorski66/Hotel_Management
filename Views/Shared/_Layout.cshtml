@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HotelManagementSystem_CoreMvc</title>
+    <link rel="shortcut icon" href="~/images/Icon.png" type="image/x-icon" />
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/lib/bootstrap/dist/css/layout.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body id="top">
+
+    <div class="bgded" style="background-image:url('../../Images/photos/aaaa.jpg');">
+
+        <div class="wrapper row1">
+             <header id="header" class="hoc clear">
+                <div id="logo" class="fl_left">
+                    <h1><a asp-area="" asp-controller="Home" asp-action="Index">@*<span class="glyphicon glyphicon-gift" aria-hidden="true"></span>&nbsp;&nbsp;*@ Hotel Management</a></h1>
+                </div>
+                <nav id="mainav" class="fl_right">
+                    <ul class="clear">
+                        <li class="active"> <a href="~/Home/Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span></a>
+                            <ul>
+                                <li><a asp-area="" asp-controller="Bookings" asp-action="Create"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Request for Booking</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="About">Room Collection</a></li>
+                                <li><a asp-area="" asp-controller="Home" asp-action="food">Food Collection</a></li>
+                            </ul>
+                        </li>
+                        @*@if (User.IsInRole("5ac264f6-91f0-46f5-9455-77e1dc141fcb"))*@
+                        @if (Context.User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <a href="#"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a>
+                                <ul>
+                                    <li>
+                                        <a class="drop" href="#">Reservasions</a>
+                                        <ul>
+                                            <li><a asp-area="" asp-controller="Reservasions" asp-action="Create">New Reservasion</a></li>
+                                            <li><a asp-area="" asp-controller="Bookings" asp-action="Index">Bookings Requests List</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="drop" href="#">Guest Option</a>
+                                        <ul>
+                                            <li><a asp-area="" asp-controller="Guests" asp-action="Index">Guest List</a></li>
+                                            <li><a asp-area="" asp-controller="Guests" asp-action="Create">Add New Guest</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="drop" href="#">Room Option</a>
+                                        <ul>
+                                            <li><a asp-area="" asp-controller="Rooms" asp-action="Index">Room List</a></li>
+                                            <li><a asp-area="" asp-controller="Rooms" asp-action="Create">Add New Room</a></li>
+                                            <li><a asp-area="" asp-controller="RoomTypes" asp-action="Index">Room Type List</a></li>
+                                            <li><a asp-area="" asp-controller="BeddingTypes" asp-action="Index">Beddding Type List</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="drop" href="#">Food Option</a>
+                                        <ul>
+                                            <li><a asp-area="" asp-controller="Foods" asp-action="Index">Food List</a></li>
+                                            <li><a asp-area="" asp-controller="Foods" asp-action="Create">Add New Food</a></li>
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+                        @*@if (Context.User.Identity.IsAuthenticated)*@
+                        @if (User.IsInRole("5ac264f6-91f0-46f5-9455-77e1dc141fcb"))
+                        {
+                            <li>
+                                <a href="#"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span></a>
+                                <ul>
+                                    <li>
+                                        <a class="drop" href="#">User Option</a>
+                                        <ul>
+                                            <li><a asp-area="" asp-controller="Admin" asp-action="UserManagement"> Manage User</a></li>
+                                            <li><a asp-area="" asp-controller="Admin" asp-action="RoleWithUserList">Role & UserList</a></li>
+                                            <li><a asp-area="" asp-controller="Admin" asp-action="AddUser">AddUser</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="drop" href="#">Role Option</a>
+                                        <ul>
+                                            <li><a asp-area="" asp-controller="Admin" asp-action="RoleManagement">Manage Role </a></li>
+                                            <li><a asp-area="" asp-controller="Admin" asp-action="AddNewRole">AddRole</a></li>
+                                            <li><a asp-area="" asp-controller="AuthenticModels" asp-action="Index">Role Permission</a></li>
+                                            <!--<li></li>
+                                            <li><a asp-area="" asp-controller="MenuHelperModels" asp-action="Index">Set Controller & Action</a></li>
+                                            <li><a asp-area="" asp-controller="MenuModels" asp-action="Index">Menu With Roll</a></li>
+                                            <li><a asp-area="" asp-controller="MenuModelManages" asp-action="Index">Menu Permission</a></li>-->
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;@User.Identity.Name</a>
+                                <ul>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;&nbsp;Logout</a></li>
+                                    <li><a asp-area="" asp-controller="" asp-action=""><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp; @User.Identity.Name</a></li>
+                                </ul>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+                                <ul>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Login"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;&nbsp;LogIn</a></li>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Register"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;&nbsp;Register</a></li>
+
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </header>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+          
+        </div>
+        <div class="wrapper row5">
+            <div id="copyright" class="hoc clear">
+
+                <p class="fl_left">Copyright &copy; @DateTime.Now.Year - All Rights Reserved - <a href="#">Tomasz Górski </a></p>
+                
+
+            </div>
+        </div>
+
+
+        <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+
+    </div>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+        <script src="~/lib/bootstrap/dist/js/jquery.mobilemenu.js"></script>
+        <script src="~/lib/bootstrap/dist/js/jquery.backtotop.js"></script>
+        <script src="~/lib/bootstrap/dist/js/jquery.min.js"></script>
+
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+
+
+
+
